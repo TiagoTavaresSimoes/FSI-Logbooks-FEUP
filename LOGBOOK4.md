@@ -31,4 +31,10 @@ Com esta task, o objetivo é demonstrar como as variáveis de ambiente são afet
 
 Ao executarmos o ficheiro, o programa chama 'system("/usr/bin/env")', esse executa o comando <b>'/usr/bin/env'</b>. O comando 'env' é utilizado para exibir as variáveis ambiente do processo atual, ou seja, vai iniciar u novo processo na shell que vai exeutar 'env', eset por sua vez exibe as variaveis ambiente o programa em C que chamou em 'system()'.
 
+## Task 5
+
+O Objetivo desta task é entender como as variáveis de ambiente definidas num shell(processo pai) afeta um programa com permissões \setuid, quando este é executado como um processo filho e entender como isto afeta a segurança do sistema.
+
+O programa fornecido permite listar todas as variáveis de ambiente em um processo. Compilamos este programa e definmos as permissões \setuid neste, e em seguida, definir algumas variáveisde ambienteno shell. Quando o programa \setuid é executado  partir do shell, coseguimos observar que as variáveis de ambiente definidas no shell pai estão disponiveis para o programa \setuid (processso filho).
+ 
 
