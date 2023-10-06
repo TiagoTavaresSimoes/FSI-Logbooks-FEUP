@@ -24,3 +24,11 @@ Esta mesma função tem como objetivo chamar um sistema para carregar um novo co
 Ao executarmos o ficheiro <b>myenv.c</b>, com a expressão <b>"NULL"</b> no terceiro parâmetro da função, as variáveis ambiente não vão ser registadas nesse parâmetro, uma vez que este é nulo. Logo o return é nulo.
 
 Ao substituírmos <b>"NULL"</b> pela variável <b>"environ"</b>, as variáveis de ambiente serão registadas.
+
+## Task 4
+
+Com esta task, o objetivo é demonstrar como as variáveis de ambiente são afetadas quando um novo programa é executado via a função 'system()'. Esta função começa por iniciar um shell e solicita a este que execute o comando especificado como um argumento.
+
+Ao executarmos o ficheiro, o programa chama 'system("/usr/bin/env")', esse executa o comando <b>'/usr/bin/env'</b>. O comando 'env' é utilizado para exibir as variáveis ambiente do processo atual, ou seja, vai iniciar u novo processo na shell que vai exeutar 'env', eset por sua vez exibe as variaveis ambiente o programa em C que chamou em 'system()'.
+
+
