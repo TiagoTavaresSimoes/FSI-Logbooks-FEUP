@@ -39,6 +39,6 @@ O programa fornecido permite listar todas as variáveis de ambiente em um proces
  
 ## Task 6
 
-O objetivo desta task é demonstrar um problema de segurança com programas \setuid que chamam a função 'system()'. A função 'system()' executa um comando na shell, mas essa pode ser perigosa quando usadas em programas \setuid, pois este pode ser manipulado por variaveis de ambiente, como a variável<b>PATH<\b>, esta variavel pode fazer com que o programa \setuid execute um comando malicioso em vez do pretendido.
+O objetivo desta task é demonstrar um problema de segurança com programas \setuid que chamam a função 'system()'. A função 'system()' executa um comando na shell, mas essa pode ser perigosa quando usadas em programas \setuid, pois este pode ser manipulado por variaveis de ambiente, como a variável<b>PATH</b>, esta variavel pode fazer com que o programa \setuid execute um comando malicioso em vez do pretendido.
 
 Com esta task conseguimos perceber que os programas \setuid que chamam a função 'system()' se não forem utilizados corretamente pode levar a vulnerabilidades de segurança, permitindo assim que um atacante execute comandos com privilegios root.
