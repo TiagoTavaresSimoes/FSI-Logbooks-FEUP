@@ -37,4 +37,8 @@ O Objetivo desta task é entender como as variáveis de ambiente definidas num s
 
 O programa fornecido permite listar todas as variáveis de ambiente em um processo. Compilamos este programa e definmos as permissões \setuid neste, e em seguida, definir algumas variáveisde ambienteno shell. Quando o programa \setuid é executado  partir do shell, coseguimos observar que as variáveis de ambiente definidas no shell pai estão disponiveis para o programa \setuid (processso filho).
  
+## Task 6
 
+O objetivo desta task é demonstrar um problema de segurança com programas \setuid que chamam a função 'system()'. A função 'system()' executa um comando na shell, mas essa pode ser perigosa quando usadas em programas \setuid, pois este pode ser manipulado por variaveis de ambiente, como a variável<b>PATH<\b>, esta variavel pode fazer com que o programa \setuid execute um comando malicioso em vez do pretendido.
+
+Com esta task conseguimos perceber que os programas \setuid que chamam a função 'system()' se não forem utilizados corretamente pode levar a vulnerabilidades de segurança, permitindo assim que um atacante execute comandos com privilegios root.
