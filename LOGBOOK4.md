@@ -47,7 +47,7 @@ Com esta task conseguimos perceber que os programas \setuid que chamam a funçã
 
 ## CTF 2 - Linux Environment
 
-Ao abordar o CTF, a primeira ação após a conexão com o servidor foi analisar os arquivos presentes e verificar as suas permissões. Na pasta principal <b>"/home/flag"</b>, que tinha acesso apenas para leitura, identificamos diversos arquivos, nomeadamente o <b>"my-script.sh"</b>. Este script, além de utilizar variáveis de ambiente, é executado constantemente a cada minuto. O executável <b>"reader"</b> é derivado do arquivo "main.c". De seguida, encontramos um diretório chamado "tmp", que é usado para criação de arquivos temporários. Decidimos então criar um arquivo <b>"teste1.txt"</b> neste local para registar a saída de dados. Para garantir total acesso, aplicamos o comando <b>"chmod 777 teste1.txt"</b>. Finalmente, criamos o <b>"teste1.c"</b> para nos auxiliar na solução deste desafio.
+Ao abordar o CTF, a primeira ação após a conexão com o servidor foi analisar os arquivos presentes e verificar as suas permissões. Na pasta principal <b>"/home/flag"</b>, que tinha acesso apenas para leitura, identificamos diversos arquivos, nomeadamente o <b>"my_script.sh"</b>. Este script, além de utilizar variáveis de ambiente, é executado constantemente a cada minuto. O executável <b>"reader"</b> é derivado do arquivo "main.c". De seguida, encontramos um diretório chamado "tmp", que é usado para criação de arquivos temporários. Decidimos então criar um arquivo <b>"teste1.txt"</b> neste local para registar a saída de dados. Para garantir total acesso, aplicamos o comando <b>"chmod 777 teste1.txt"</b>. Finalmente, criamos o <b>"teste1.c"</b> para nos auxiliar na solução deste desafio.
 
 ### O código <b>teste1.c</b> é deste formato:
 
