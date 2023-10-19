@@ -42,3 +42,29 @@ O programa fornecido permite listar todas as variáveis de ambiente em um proces
 O objetivo desta task é demonstrar um problema de segurança com programas \setuid que chamam a função 'system()'. A função 'system()' executa um comando na shell, mas essa pode ser perigosa quando usadas em programas \setuid, pois este pode ser manipulado por variaveis de ambiente, como a variável<b>PATH</b>, esta variavel pode fazer com que o programa \setuid execute um comando malicioso em vez do pretendido.
 
 Com esta task conseguimos perceber que os programas \setuid que chamam a função 'system()' se não forem utilizados corretamente pode levar a vulnerabilidades de segurança, permitindo assim que um atacante execute comandos com privilegios root.
+
+
+
+### CTF 2 - Linux Environment
+
+Ao abordar o CTF, a primeira ação após a conexão com o servidor foi analisar os arquivos presentes e verificar as suas permissões. Na pasta principal <b>"/home/flag"</b>, que tinha acesso apenas para leitura, identificamos diversos arquivos, nomeadamente o <b>"my-script.sh"</b>. Este script, além de utilizar variáveis de ambiente, é executado constantemente a cada minuto. O executável <b>"reader"</b> é derivado do arquivo "main.c". De seguida, encontramos um diretório chamado "tmp", que é usado para criação de arquivos temporários. Decidimos então criar um arquivo <b>"teste1.txt"</b> neste local para registar a saída de dados. Para garantir total acesso, aplicamos o comando <b>"chmod 777 teste1.txt"</b>. Finalmente, criamos o <b>"teste1.c"</b> para nos auxiliar na solução deste desafio.
+
+## O código <b>teste1.c</b> é deste formato:
+
+```c++
+#include <stdlib.h>
+
+int access(const char *pathname, int mode){
+    system("/usr/bin/cat /flags/flag.txt > /tmp/teste1.txt");
+    return 0;
+} 
+```
+
+De seguida decidimos compilar o programa utilizando o comando <b>gcc -fPIC -g -c teste1.c</b> e após isso corremos <b>gcc -shared -o teste1.so teste1.o -lc</b>.
+
+Mas para concluirmos, tivemos de alterar a variável de ambiente <b>LD_PRELOAD</b> para, neste caso, <b>tmp/teste1.so</b>, utilizando os comandos:
+
+<b>echo 'LD_PRELOAD=/tmp/teste1.so' > env</b>
+<b>cat env</b>
+
+A seguir tivemos de esperar um minuto para que a flag tivesse no nosso ficheiro, neste caso o <b>teste1</b>.
