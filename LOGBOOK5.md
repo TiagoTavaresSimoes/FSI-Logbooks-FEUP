@@ -36,7 +36,42 @@ Todas as instruções de compilação já estão especificadas no Makefile provi
 
 
 ## TAREFA 2
+A segunda tarefa consistia em perceber como funciona o programa vulnerável deste lab, que se encontra no ficheiro "stack.c". Para isso começamos por analisar o ficheiro.
 
+A vulnerabilidade está no facto da função "strcpy()", não verificar os limites do buffer para o qual estamos a tentar copiar. O programa lê para um array de caracteres "str", com um tamanho máximo de 517 bytes, o conteúdo (também 517 bytes, se tudo correr bem) de um ficheiro "badfile".
+
+```c
+char str[517];
+FILE *badfile;
+badfile = fopen("badfile", "r");
+fread(str, sizeof(char), 517, badfile);
+```
+
+De seguida é chamada a função "bof()", com o array "str" como argumento.
+
+```c
+bof(str);
+```
+
+Nesta função, "strcpy()" irá copiar os 517 bytes do array "str" para um buffer de tamanho "BUF_SIZE", definido como apenas 100 bytes, e por isso um buffer-overflow irá ocorrer.
+
+```c
+#ifndef BUF_SIZE
+#define BUF_SIZE 100
+#endif
+//...
+char buffer[BUF_SIZE];
+
+strcpy(buffer, str);	
+```
+
+Uma vez que o programa é "SET-UID root-owned", explorando esta vulnerabilidade existe a possibilidade do utilizador conseguir acesso a uma root shell (se o conteúdo do ficheiro "badfile" visar a isso, é claro).
+
+Em termos de compilação é de destacar alguns aspetos:
+ - As opcões "-fno-stack-protector" e "-z execstack" devem ser usadas de forma a desativar a "StackGuard" e as proteções não executáveis da stack.
+ 
+ - De forma a tornar o programa em um programa "Set-UID root-owned", primeiramente mudamos a ownership do programa para root, usando o comando "sudo chown root stack", e depois mudamos a permissão para 4755, deforma a habilitar o bit de "Set-UID". Esta deve ser a ordem utilizada, uma vez que alterar a ownership para root, desativaria o bit de "Set-UID".
+Todos estes comandos já vêm incluídos no Makefile providenciado, pelo que estamos prontos a continuar com as restantes tarefas, e podemos compilar o código com "make", no momento apropriado.
 
 
 
