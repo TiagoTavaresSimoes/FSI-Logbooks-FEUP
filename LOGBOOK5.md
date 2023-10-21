@@ -83,7 +83,7 @@ Primeiramente, tivemos que utilizar um debbuger(GDB), para analisar o programa a
 
 Terminal 1 | Terminal 2
 :---------:|:---------:
-![Alt text](image-1.png)| ![Alt text](image-2.png)
+![Alt text](image-1.png)| ![Alt text](image-3.png)
 
 De seguida, tivemos de alterar as variaveis no script python.
 
@@ -132,7 +132,7 @@ with open('badfile', 'wb') as f:
 ```
 
 Para finalizar corremos o script python e depois corremos o programa.Com isto conseguimos executar o buffer overflow e executar o shellcode.
-![](url)
+![Alt text](image-4.png)
 
 
 
@@ -148,6 +148,3 @@ Para finalizar corremos o script python e depois corremos o programa.Com isto co
 
 
 
-![Alt text](image-3.png)
-
-![Alt text](image-4.png)
