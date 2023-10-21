@@ -83,7 +83,7 @@ Primeiramente, tivemos que utilizar um debbuger(GDB), para analisar o programa a
 
 Terminal 1 | Terminal 2
 :---------:|:---------:
-![Terminal print of lab task1]() | ![Terminal print of lab task1](file:///C:/Users/cmpos/OneDrive/Imagens/Capturas%20de%20tela/2%20task5.png)
+![Alt text](image-1.png)| ![Alt text](image-2.png)
 
 De seguida, tivemos de alterar as variaveis no script python.
     - Alteramos a variavel **offset** para 112, pois essa é a distância entre o inicio do buffer e o endereço de retorno.
