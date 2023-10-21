@@ -86,9 +86,13 @@ Terminal 1 | Terminal 2
 ![Alt text](image-1.png)| ![Alt text](image-2.png)
 
 De seguida, tivemos de alterar as variaveis no script python.
-    - Alteramos a variavel **offset** para 112, pois essa é a distância entre o inicio do buffer e o endereço de retorno.
-    - Alteramos tambem o valor **ret** para o programa saltar para o endereço que queremos.
-    - Alteramos o valor **start** para coincidir com o inicio do shellcode no buffer com a posição do ret.
+
+
+-Alteramos a variavel **offset** para 112, pois essa é a distância entre o inicio do buffer e o endereço de retorno.
+
+-Alteramos tambem o valor **ret** para o programa saltar para o endereço que queremos.
+
+-Alteramos o valor **start** para coincidir com o inicio do shellcode no buffer com a posição do ret.
     
 
 
@@ -115,7 +119,7 @@ content[start:start + len(shellcode)] = shellcode
 
 # Decide the return address value
 # and put it somewhere in the payload
-ret    = 0xffffcbfc     # Change this number
+ret    = 0xffffcc0c     # Change this number
 offset = 112           # Change this number
 
 L = 4     # Use 4 for 32-bit address and 8 for 64-bit address
@@ -137,8 +141,10 @@ Para finalizar corremos o script python e depois corremos o programa.Com isto co
 
 
 
+
+
 ## TAREFA 4
-![Alt text](image-1.png)
 
 
-![Alt text](image-2.png)
+
+
