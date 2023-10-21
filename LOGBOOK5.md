@@ -77,6 +77,15 @@ Todos estes comandos já vêm incluídos no Makefile providenciado, pelo que est
 
 ## TAREFA 3
 
+Nesta tarefa, o objetivo é explorar uma vulnerabilidade de buffer overflow em um programa de 32 bits chamado "stack-L1-dbg".
+
+Primeiramente, tivemos que utilizar um debbuger(GDB), para analisar o programa alvo e descobrir a distância entre o início do buffer e o local onde o endereço de retorno é armazenado.
+
+Terminal 1 | Terminal 2
+:---------:|:---------:
+![Terminal print of lab task1](file:///C:/Users/cmpos/OneDrive/Imagens/Capturas%20de%20tela/1%20task5.png) | ![Terminal print of lab task1](file:///C:/Users/cmpos/OneDrive/Imagens/Capturas%20de%20tela/2%20task5.png)
+
+
 
 
 
