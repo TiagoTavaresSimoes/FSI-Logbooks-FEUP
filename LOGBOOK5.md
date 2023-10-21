@@ -148,3 +148,6 @@ Para finalizar corremos o script python e depois corremos o programa.Com isto co
 
 
 
+![Alt text](image-3.png)
+
+![Alt text](image-4.png)
