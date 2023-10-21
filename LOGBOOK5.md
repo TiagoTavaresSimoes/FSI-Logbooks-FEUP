@@ -138,3 +138,4 @@ Para finalizar corremos o script python e depois corremos o programa.Com isto co
 
 
 ## TAREFA 4
+![Alt text](image.png)
