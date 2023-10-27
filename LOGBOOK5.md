@@ -198,3 +198,13 @@ O objetivo do primeiro desafio é de alguma forma ler o ficheiro "flag.txt" que 
 Considerando isto, corremos o programa, com o seguinte input, quer usando diretamente a porta, quer o script python, para obtermos a flag:
 
 ### Desafio 2
+O segundo desafio tem o mesmo objetivo que o primeiro, no entanto foram feitas algumas mitigações de forma a possivelmente corrigir os problemas de segurança do programa anterior. Seguindo o mesmo processo de raciocíno, respondemos da seguinte forma a estas questões:
+
+	- Que alterações foram feitas?
+	  R: Entre "meme_file" e "buffer", foi declarado um novo array de caracteres "val", inicializado com os valores hexadecimais "\xef\xbe\xad\xde", que são guardados em memória na ordem inversa como "deadbeef", uma vez que a arquitetura é little endian. "meme_file" aumentou de tamanho em 1 byte, guardando um "null termination caracther" extra. A chamada a "scanf" agora guarda um máximo de 45 caracteres em "buffer". O ficheiro com nome guardado em "meme_file" só é aberto e impresso na consola, se o valor guardado em "val" corresponder a "0xfefc2324"
+	  
+	- Mitigam na totalidade o problema?
+	  R: Não, o buffer overflow, que ocorria devido à chamada à função scanf, não foi corrigido, pelo contrário é ainda possível fazer overflow de um maior número de caracteres, uma vez que a função agora guarda um máximo de 45 caracteres dados pelo utilizador, no "buffer" que continua a ser de 32 bytes.
+	  
+	- É possível ultrapassar a mitigação usando uma técnica similar à que foi utilizada anteriormente ?
+	  R: É sim, apenas temos de colocar no input usado anteriormente a correta sequência de caracteres para guardar em "val", antes do nome do ficheiro que queremos abrir "flag.txt", utilizando assim o overflow do "buffer" para reescrever não só os conteúdos de "meme_file", mas também de "val", permitindo-nos abrir e ler os conteúdos do ficheiro e obter a flag.
