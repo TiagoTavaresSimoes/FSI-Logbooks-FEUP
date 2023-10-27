@@ -197,6 +197,9 @@ O objetivo do primeiro desafio é de alguma forma ler o ficheiro "flag.txt" que 
 	  
 Considerando isto, corremos o programa, com o seguinte input, quer usando diretamente a porta, quer o script python, para obtermos a flag:
 
+![Alt text](images/ctf5_d1_port.png)
+![Alt text](images/ctf5_d1.png)
+
 ### Desafio 2
 O segundo desafio tem o mesmo objetivo que o primeiro, no entanto foram feitas algumas mitigações de forma a possivelmente corrigir os problemas de segurança do programa anterior. Seguindo o mesmo processo de raciocíno, respondemos da seguinte forma a estas questões:
 
@@ -208,3 +211,6 @@ O segundo desafio tem o mesmo objetivo que o primeiro, no entanto foram feitas a
 	  
 	- É possível ultrapassar a mitigação usando uma técnica similar à que foi utilizada anteriormente ?
 	  R: É sim, apenas temos de colocar no input usado anteriormente a correta sequência de caracteres para guardar em "val", antes do nome do ficheiro que queremos abrir "flag.txt", utilizando assim o overflow do "buffer" para reescrever não só os conteúdos de "meme_file", mas também de "val", permitindo-nos abrir e ler os conteúdos do ficheiro e obter a flag.
+
+![Alt text](ctf5_d2.png)
+![Alt text](ctf5_d2_input.png)
