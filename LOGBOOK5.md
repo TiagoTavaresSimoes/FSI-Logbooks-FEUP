@@ -181,4 +181,20 @@ with open('badfile', 'wb') as f:
     f.write(content)
 ```` 
 
+## CTF 5
 
+### Desafio 1
+O objetivo do primeiro desafio é de alguma forma ler o ficheiro "flag.txt" que se encontra no working directory, tomando conta das funcionalidades do programa que se encontra a correr. Para chegar à soluçao, começamos por responder às perguntas propostas no enunciado:
+
+	- Existe algum ficheiro que é aberto e lido pelo programa ?
+	  R: Existe, o ficheiro "mem.txt", guardado no array de caracteres "meme_file", é aberto para leitura.
+	  
+	- Existe alguma forma de controlar o ficheiro que é aberto ?
+	  R: Sim, alterando o nome guardado em "meme_file".
+	
+	- Existe algum buffer-overflow? Se sim, o que é que podes fazer ?
+	  R: A chamada à função "scanf", "scanf("%40s", &buffer);", lê para um array "buffer" com um tamanho máximo de 32 bytes, um total possível de 40 caracteres de input do utilizador do programa. Uma vez que no código, "buffer" é declarado logo após "meme_file", e falta ao programa as proteções da stack, descritas ao correr "checksec program", é possível com este overflow, reescrever o conteúdo do array "meme_file", e por isso, controlar o nome do ficheiro que é aberto, permitindo-nos examinar o seu conteúdo, impresso pelo programa na consola.
+	  
+Considerando isto, corremos o programa, com o seguinte input, quer usando diretamente a porta, quer o script python, para obtermos a flag:
+
+### Desafio 2
