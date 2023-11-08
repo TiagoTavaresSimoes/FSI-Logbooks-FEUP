@@ -12,5 +12,5 @@ Para finalizar damos 'crash' ao progrma da seguinte maneira:
 
 | Terminal 1  | Terminal 2 |
 | ------ | ------ |
-|        |        |
-|        |        |
+|   ![Alt text](task1(2)lab7.png)     |    ![Alt text](lab7(2).png)    |
+
