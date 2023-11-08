@@ -1,4 +1,4 @@
-##Task 1
+## Task 1
 
 Começamos por compilar o servidor que contem a format string vulnerability. De seguida enviamos a mensagem hello para o servidor com a vulnerabilidade e vemos a mensagem que o servidor nos envia.
 
@@ -14,7 +14,7 @@ Para finalizar damos 'crash' ao progrma da seguinte maneira:
 | ------ | ------ |
 |   ![Alt text](task1(2)lab7.png)     |    ![Alt text](lab7(2).png)    |
 
-##Task 2
+## Task 2
 
 **Task 2.A**
 
@@ -34,7 +34,7 @@ Para imprimir dados da pilha, considerando que temos uma vulnerabilidade na fun�
 |   ![Alt text](img/task2alab7.png)     |    ![Alt text](img/lab7(4).png)    |
 
 
-##Task 3
+## Task 3
 
 **Task 3.A**
 Alteramos o valor da variável:
