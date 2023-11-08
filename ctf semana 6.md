@@ -12,4 +12,6 @@ Obtendo este resultado:
 
 ![Alt text](image-5.png)
 
-![Alt text](image-5.png)
+![testXSS](images/ctf4/testXSS.png)
+
+![successXSS](images/ctf4/success.png)
