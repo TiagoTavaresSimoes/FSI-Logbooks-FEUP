@@ -4,7 +4,7 @@ Começamos por compilar o servidor que contem a format string vulnerability. De 
 
 | Terminal 1  | terminal 2 |
 | ------ | ------ |
-|        |        |
+|    ![Alt text](task1lab7.png)    |
 
 
 Para finalizar damos 'crash' ao progrma da seguinte maneira:
