@@ -10,7 +10,7 @@ A partir dessa página, apercebemo-nos que poderíamos testar se input que aí p
 
 Obtendo este resultado:
 
-![Alt text](image-5.png)
+![Alt text](image-10.png)
 
 A seguir, colocamos este script...
 
