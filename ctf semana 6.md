@@ -24,7 +24,7 @@ O resultado que nos dará será este:
 
 ![Alt text](image-6.png)
 
-Voltamos atrás da página e visualizamos o código fonte desta, graças às funcionalidades do noso browser e alteramos o url da página, adicionando ao request desta, o id inicial, o que nos dá este resultado.
+Voltamos atrás da página e visualizamos o código fonte desta, graças às funcionalidades do nosso browser e alteramos o url da página, adicionando ao request desta, o id inicial, o que nos dá este resultado.
 
 
 ![Alt text](image-7.png)
