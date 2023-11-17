@@ -15,4 +15,3 @@ A tarefa consistia em selecionar os dados do utilizador "Alice"
 SELECT * FROM credentials WHERE Name = "Alice";
 ```
 
-![Alt text](image-11.png)
