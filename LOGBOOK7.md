@@ -56,11 +56,16 @@ Alteramos o valor alvo para 0x5000
 Desta vez, temos que imprimir um número exato de bytes para obter um valor exato da variável de destino, que é 20480 (0x5000 = 20480 em decimal).
 
 ## CTF Desafio 1
-Começamos por correr o script python e salvar o pid do processo a correr
+Começamos por correr o script python e salvar o pid do processo a correr:
+
 ![Alt text](pid.png)
+
 Deseguida corremos o gdb com o pid obtido. Uma vez que a flag é guardada numa variável global, e, como verificado ao correr checksec no programa compilado, os endereços são estáticos, se obtivermos o endereço da variável onde a flag é guardada, conseguiremos explorá-lo para obter a flag. Para isso corremos o comando "gdb p &flag"
+
 ![Alt text](flag_addr.png)
+
 Colocamos o endereço obtido invertido (arquitetura little endian), seguido pelo especificador de formato "%s". Este input será guardado por "scanf" no buffer, e ao correr "printf(buffer)", o especificador de formato, vez que não é especificado outro argumento, irá ler a memória guardada no endereço especificado imediatamente acima na stack, ou seja, o endereço da flag que inserimos no input, imprimindo assim o seu valor para o terminal.
+
 ![Alt text](input.png)
 ![Alt text](flag.png)   
 
