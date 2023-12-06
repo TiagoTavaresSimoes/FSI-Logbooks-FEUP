@@ -69,3 +69,24 @@ Colocamos o endereço obtido invertido (arquitetura little endian), seguido pelo
 ![Alt text](input.png)
 ![Alt text](flag.png)   
 
+
+
+## CTF Desafio 2
+
+Inicialmente, analisamos os arquivos disponíveis, os quais são os mesmos que estão ativos no servidor na porta 4005. Descobrimos que o uso do comando checksec revelou que o executável program não está alocado num local fixo na memória, o que sugere que o código pode ser executado de qualquer posição. Adicionalmente, foi observado que medidas de segurança, como a proteção contra buffer overflow, não estavam em vigor.
+
+Para explorar o arquivo main.c e manipular o valor da variável key para obter a <b>flag</b>, é necessário modificar seu valor para <i>beef</i>, que em decimal corresponde a 4779.
+
+A seguir, precisamos localizar o endereço de memória da variável key e alterá-lo. Isto pode ser feito localizando a chave no servidor.
+
+Depois, é necessário ajustar o valor da key para 4779 (beef). Para isso, precisamos escrever 4775 bytes (acrescidos de 4 bytes para o endereço desejado) antes de executar o comando que substituirá efetivamente o valor. Devemos incluir uma sequência de 'no-operation' (NOPs) antes de enviar os dados, para assegurar que o código malicioso seja executado sem interrupções.
+
+O script Python deve ser ajustado da seguinte forma para realizar a injeção:
+
+```python
+p.recvuntil("some text")
+p.sendline(b"NOPs" + b"\x24\xB3\x04\x08" + b"beef" + b"\x90\x90\x90\x90")
+p.interactive()
+```
+
+Ao executar o script, obteremos a flag desejada.
