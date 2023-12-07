@@ -72,7 +72,7 @@ De seguida fazemos o mesmo processo mas com uma imagem nossa.
 
 
  ![Alt text](img25.png)
- 
+
 
 ![Alt text](img26.png)
 
@@ -80,4 +80,5 @@ De seguida fazemos o mesmo processo mas com uma imagem nossa.
 As nossas observações são:
 
 -O modo ECB deixa dados sobre a mensagem subjcente que esta a ser ecriptada. Razão pela qual isso acontece é porque este produz blocos de texto cifrados apos encriptar blocos de texto idênticos.
+
 -O modo CBC elimina o problema de ECB. O texto simples de um bloco é combinado om um texto cifrado do bloco anterior via a operação XOR e o resultado é encriptado.
