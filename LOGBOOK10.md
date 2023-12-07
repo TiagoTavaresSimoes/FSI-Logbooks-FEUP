@@ -41,8 +41,10 @@ BF-CBC
 ![Alt text](image_BF-CBC.png)
 
 Texto encriptado:
+
 ![Alt text](encriptado2.png)
 
 Texto desencriptado:
+
 ![Alt text](image17.png)
 
