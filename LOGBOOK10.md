@@ -64,12 +64,15 @@ Na imagem seguinte, temos a imagem orignal no topo a esquerda a iagem encriptada
 
 ![Alt text](img23.png)
 
+
 De seguida fazemos o mesmo processo mas com uma imagem nossa.
 
-![Alt text](img24.png)
 
-![Alt text](img25.png)
-   ![Alt text](img26.png)
+    ![Alt text](img24.png)
+
+    ![Alt text](img25.png)
+
+    ![Alt text](img26.png)
 
 
 As nossas observações são:
