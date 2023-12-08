@@ -198,6 +198,7 @@ Após reiniciar o servidor e ir a www.example.com, confirmámos que ligação j�
 ## CTF 11
 
 Começamos por estudar o script python fornecido no ficheiro 'challenge.py', de modo a entender melhor o processo de encriptação e desencriptação por RSA, feito pelas funções 'enc()' e 'dec()'. Também corremos um simples teste, com parâmetros muito pequenos (p=5; q=11; n=55, produto de p e q; e=3, coprimo de 5 e 11; e d=27, calculado sabendo que e*d = 1 mod ((p-1)*(q-1))), onde testamos encriptar e desencriptar uma mensagem muito simples '1', uma vez que era um caracter com representação em bytes, inferior ao nosso n de 55, o que é necessário para que o algoritmo de RSA funcione.
+
 ```python
 # Python Module ciphersuite
 import os
@@ -236,8 +237,11 @@ print("\nCiphered message:", hexlify(ciphered_text).decode())
 print("\nDeciphered message:", deciphered_text.decode())
 sys.stdout.flush()
 ```
+
 ![Alt text](img/test.png)
+
 Ao testar a ligação ao servidor várias vezes, reparamos que o valor de n usado para a cifra, mudava todas as vezes (supostamente, por valores diferentes para p e q serem escolhidos), alterando ligeiramente também a encriptação, pelo que decidimos guardar os valores recibidos numa específica conexão ao servidor:
+
 ```note
 Public parameters -- 
 e:  65537
@@ -246,8 +250,10 @@ n:  3595386269724631815458610381578049467235953957884613145468601623154653516110
 
 ciphertext: 3730323135626434363832396332353639633038623137653338343465366365633937323065323862623536343237363836653436313065656633396562336330346138386361663166316332396564356234623762633361356430616261616230623330636463376563303138313966393034643934383436646236333933633630323134616334343037393764666361663561306239366332616237363861653030616361353235306139656566626531393934633639353766613631633166323962616434333330643266313738643266353864333033633239613338313635613130393964353931333562343265663863633161346666336334646330303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030
 ```
+
 A tarefa principal do desafio, é encontrar os valores para p e q, deforma a calcular d, e podermos aplicar a função de desencriptação fornecida no template.
 Sabemos que são valores primos próximos de 2^512 e 2^253, respetivamente. Precisamos em primeiro lugar de definir uma função para testar a primalidade de números. Utilizamos uma, do site rosetta code, que implementa o algoritmo de Miller Rabin, com alta probabilidade dos números declarados como primos, o serem de facto, e é eficiente para grandes valores. Depois definimos uma simples função "find_next_prime", que obtem o primeiro número primo superior ao número fornecido (Não tínhamos a certeza se os valores de p e q seriam superiores ou inferiores aos valores a que são próximos. Testamos superiores, e funcionou. Caso o loop que obtem p e q fosse infinito, teríamos facilmente alterado esta função para obter o primeiro primo inferior invés do superior). Por fim implementamos a função "find_p_q", que procura valores próximos dos valores fornecidos, que sejam primos e cujo o produto seja igual ao valor de n obtido.
+
 ```python
 def is_Prime(n):
     """
@@ -307,8 +313,11 @@ def find_p_q(start_p, start_q, target):
 			
 		p = find_next_prime(p)
 ```
+
 ![Alt text](img/p_q.png)
+
 Tendo obtido os valores de p e q, calculamos o valor de d, traduzindo a sua equação por 'd = pow(e, -1, ((p-1)*(q-1)))'. Finalmente, apenas convertemos a flag obtida no formato que é esperado utilizar com a função 'dec()' (com os testes que corremos no início, apercebemo-nos que esse formato requiria converter aquilo que era transmitido pelo servidor, usando encode() e unhexlify()), e corremos o algoritmo, guardando o resultado numa variável 'flag', que imprimimos no terminal.
+
 ```c
 ciphered_flag = unhexlify('3730323135626434363832396332353639633038623137653338343465366365633937323065323862623536343237363836653436313065656633396562336330346138386361663166316332396564356234623762633361356430616261616230623330636463376563303138313966393034643934383436646236333933633630323134616334343037393764666361663561306239366332616237363861653030616361353235306139656566626531393934633639353766613631633166323962616434333330643266313738643266353864333033633239613338313635613130393964353931333562343265663863633161346666336334646330303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030303030'.encode())
 n = 359538626972463181545861038157804946723595395788461314546860162315465351611001926265416954644815072042240227759742786715317579537628833244985694861278986206259785454342119864617374359952879082323544262969822346940123477678654063974439152327219764977930491501559698538489861469119200053349189066319584673036413
