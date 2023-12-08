@@ -171,7 +171,7 @@ $ openssl req -newkey rsa:2048 -sha256 -keyout example.key -out example.csr -sub
 $ openssl ca -config openssl.cnf -policy policy_anything -md sha256 -days 3650 -in example.csr -out example.crt -batch -cert ca.crt -keyfile ca.key
 ```
 
-Depois modificamos o ficheiro de configuração do servidor `etc/apache2/sites-available/bank32_apache_ssl.conf` para utilizar os dois ficheiros originados: **example.csr** e **example.key**:
+Depois modificamos o ficheiro de configuração do servidor `etc/apache2/sites-available/bank32_apache_ssl.conf` para utilizar os dois ficheiros originados: **example.crt** e **example.key**:
 
 ```note
 <VirtualHost *:443> 
