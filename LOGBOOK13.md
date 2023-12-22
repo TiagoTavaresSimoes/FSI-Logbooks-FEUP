@@ -101,7 +101,7 @@ No segundo teste utilizamos o endereço de ip, de um dos servidores DNS público
 destination_ip = '203.109.149.192'
 ```
 
-![](img/vodafone_nz_dns.png)
+![](img/vodafon_nz_dns.png)
 
 ## Task 1.4
 ```python
