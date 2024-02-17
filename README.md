@@ -1,5 +1,3 @@
-Breve descrição do grupo
-
 * Turno: [L]04
 * Grupo: 07
 * Alunos:
